@@ -3,6 +3,14 @@ const app = express();
 const http = require("http");
 const { Server } = require("socket.io");
 
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "dist/index.html"), function (err) {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
+});
+
 const cors = require("cors");
 app.use(cors());
 
